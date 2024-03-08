@@ -7,13 +7,17 @@ Your instructors:
 - Simon Willison
 - Alex Garcia
 
+## Questions and shared notes
+
+- We will be monitoring [this Google Doc](https://docs.google.com/document/d/1OyEjk7yoQMdyhkAccRvg7R17nEHpIXpSs8BBIH78wWU/edit) during the workshop for questions. Please feel free to use it to share notes as well - things that we missed can then be incorporated into the tip sheet after the session.
+
 ## Getting Help
 
 - [Datasette on Discord](https://datasette.io/discord)
 - The `#proj-datasette` channel in the [News Nerdery Slack](https://newsnerdery.org/)
 - The [Github Discussions page on Datasette](https://github.com/simonw/datasette/discussions)
 
-## Introduction to Datasette
+## How to run Datasette on a laptop
 
 This will be a walkthrough of the Datasette open source project! This can be ran either on the conference-provided laptops, as long as you have a working Python environment (ie can `pip install`) packages.
 
