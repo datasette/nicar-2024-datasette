@@ -333,5 +333,5 @@ Here are some more advanced uses of the Datasette Cloud API:
 ## Final demos
 
 - `datasette-comments`
-- ChatGPT talking to Datasette
+- ChatGPT talking to Datasette - https://gist.github.com/simonw/d6425fd997e61cf517aa196fe988638c
 - `datasette-scribe`
