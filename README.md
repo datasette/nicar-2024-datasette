@@ -17,22 +17,13 @@ Your instructors:
 - The `#proj-datasette` channel in the [News Nerdery Slack](https://newsnerdery.org/)
 - The [Github Discussions page on Datasette](https://github.com/simonw/datasette/discussions)
 
-
-
-## Introduction to Datasette
+## How to run Datasette on a laptop
 
 TODO Alex
 
 ## Introduction to Datasette Cloud
 
 TODO Simon
-
-
-
-# Demo: `datasette-comments`
-
-(or is this a part of Datasette cloud?)
-
 
 # Demo: `datasette-scribe`
 
