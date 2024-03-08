@@ -159,6 +159,30 @@ Now we'll use an enrichment to add a `hireYear` column:
 - Regular expression: `(\d{4})-.*`
 - Output column: `hireYear`
 
+## 4. Building a search engine
+
+We'll repeat the exercise from earlier with the NICAR schedule. This time, upload the `nicar-2024-schedule.csv` file to Datasette Cloud to create a table.
+
+Now we can enable full-text search using the interface:
+
+- Table actions -> Configure full-text-search
+- Select `session_title` and `session_description`
+- Click the blue button
+
+## 5. Publishing a table
+
+Everything in Datasette Cloud is private, but you can publish individual tables to make them available to anyone with the URL.
+
+Try this on the `nicar-2024-schedule` table:
+
+- Table actions -> Make table public
+- Confirm that you want to change the privacy for the table
+- The table is now available to anyone at `your-subdomain.datasette.site/data/nicar-2024-schedule`
+
+You can tell if a table is public due to the lack of a padlock icon (we'll be making this more clear soon).
+
+Published tables include the search and filtering interface, and support both `.json` API access and `.csv` exports.
+
 # Demo: `datasette-comments`
 
 (or is this a part of Datasette cloud?)
