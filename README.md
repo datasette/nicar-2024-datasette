@@ -152,6 +152,8 @@ Let's try a larger CSV
 
 ## 3. Running an enrichment
 
+[Enrichments](https://enrichments.datasette.io/) are a powerful new Datasette feature ([introduced here](https://simonwillison.net/2023/Dec/1/datasette-enrichments/)) which allow you to run data modification operations against rows in a table. They are based around plugins, which means new enrichments can be added with [very little code](https://enrichments.datasette.io/en/stable/developing.html).
+
 Now we'll use an enrichment to add a `hireYear` column:
 - Table actions -> Enrich selected data -> Regular expressions
 - Source column: `hireDate`
