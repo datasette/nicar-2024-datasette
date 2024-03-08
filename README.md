@@ -133,7 +133,7 @@ Let's start with an import from a URL - we'll use the Global Power Plants exampl
   - Table actions -> Edit table schema -> Enter a new name -> Click "Rename"
 - And we get our first visualization! Because it has latitude and longitude columns we can see it on a map.
 
-## 2. Uploading CSV files
+### 2. Uploading CSV files
 
 Next we'll upload some CSV data.
 - Download a copy of the CSV of Baltimore Grocery Stores from https://data.baltimorecity.gov/datasets/baltimore::grocery-stores/explore
@@ -152,7 +152,7 @@ Let's try a larger CSV
   order by avg(grossPay) desc
   ```
 
-## 3. Running an enrichment
+### 3. Running an enrichment
 
 [Enrichments](https://enrichments.datasette.io/) are a powerful new Datasette feature ([introduced here](https://simonwillison.net/2023/Dec/1/datasette-enrichments/)) which allow you to run data modification operations against rows in a table. They are based around plugins, which means new enrichments can be added with [very little code](https://enrichments.datasette.io/en/stable/developing.html).
 
@@ -166,7 +166,7 @@ Now we'll use the regular expression enrichment to add a `hireYear` column:
 
 ![Screenshot of the enrich data interface with those form fields filled out](enrich-regular-expression.png)
 
-## 4. Building a search engine
+### 4. Building a search engine
 
 We'll repeat the exercise from earlier with the NICAR schedule. This time, upload the `nicar-2024-schedule.csv` file to Datasette Cloud to create a table.
 
@@ -176,7 +176,7 @@ Now we can enable full-text search using the interface:
 - Select `session_title` and `session_description`
 - Click the blue button
 
-## 5. Enriching with GPT-4
+### 5. Enriching with GPT-4
 
 Let's write a haiku for every NICAR session!
 
@@ -189,7 +189,7 @@ Let's write a haiku for every NICAR session!
 
 You can use haiku column -> cog menu -> Show not-blank rows to see the haikus it has written so far.
 
-## 5. Publishing a table
+### 6. Publishing a table
 
 Everything in Datasette Cloud is private, but you can publish individual tables to make them available to anyone with the URL.
 
@@ -203,10 +203,48 @@ You can tell if a table is public due to the lack of a padlock icon (we'll be ma
 
 Published tables include the search and filtering interface, and support both `.json` API access and `.csv` exports.
 
-# Demo: `datasette-comments`
+### 7. Extracting data into a table with AI
 
-(or is this a part of Datasette cloud?)
+**[datasette-extract](https://github.com/datasette/datasette-extract)** is a brand new (built just in time for this conference) Datasette plugin that lets you enter unstructured data into a Datasette table using the OpenAI GPT-4 model.
 
-# Demo: `datasette-scribe`
+Let's use it to load up a table with data copied from a website.
 
-TODO Alex
+https://bachddsoc.org/calendar/ is a calendar of upcoming events at the [Bach Dancing & Dynamite Society](https://en.wikipedia.org/wiki/Bach_Dancing_%26_Dynamite_Society) jazz venue in Half Moon Bay (I just created their Wikipedia page!)
+
+We're going to start an events calendar for the city, without any tedious data entry.
+
+Start on your `/data` database  is page. 
+- Database actions -> Create table with extracted data
+
+Visit https://bachddsoc.org/calendar/ and copy and paste a chunk of text from the page. Don't worry about the format.
+
+Configure the table as follows:
+- Table name: `events`
+- Columns:
+  - `event_title`
+  - `event_date` - Hint: `YYYY-MM-DD`
+  - `venue_name`
+  - `venue_address`
+  - `start_time` - Hint: `HH:MM 24hr`
+  - `description`
+
+Now scroll down and click "Extract".
+
+Watch as the extraction process pulls the events out of the unstructured text and writes them to your new `/data/events` table!
+
+### 8. Extracting structured data from an image
+
+I took [a photograph of a flier](https://static.simonwillison.net.s3-us-west-1.amazonaws.com/static/2024/comedy-luau.jpeg) for an event in Half Moon Bay a while ago. Let's import that event as well.
+
+From the new `events` table click:
+- Table actions -> Extract data into this table
+
+Drag the photograph onto the textarea, or select it with the file upload field.
+
+Now wait for a few seconds... and if all goes well the event will be added to the table as well.
+
+## Final demos
+
+- `datasette-comments`
+- ChatGPT talking to Datasette
+- `datasette-scribe`
