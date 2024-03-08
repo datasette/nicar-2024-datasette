@@ -156,7 +156,8 @@ Let's try a larger CSV
 
 [Enrichments](https://enrichments.datasette.io/) are a powerful new Datasette feature ([introduced here](https://simonwillison.net/2023/Dec/1/datasette-enrichments/)) which allow you to run data modification operations against rows in a table. They are based around plugins, which means new enrichments can be added with [very little code](https://enrichments.datasette.io/en/stable/developing.html).
 
-Now we'll use an enrichment to add a `hireYear` column:
+Now we'll use the regular expression enrichment to add a `hireYear` column:
+
 - Table actions -> Enrich selected data -> Regular expressions
 - Source column: `hireDate`
 - Capture mode: "Store first match in single column"
@@ -174,6 +175,19 @@ Now we can enable full-text search using the interface:
 - Table actions -> Configure full-text-search
 - Select `session_title` and `session_description`
 - Click the blue button
+
+## 5. Enriching with GPT-4
+
+Let's write a haiku for every NICAR session!
+
+- Table actions -> Enrich selected data -> AI analysis with OpenAI GPT
+- Model: `gpt-3.5-turbo` - it's very fast, cheap and writes terrible but entertaining haikus
+- Prompt: `{{ session_title }} {{ session_description }}`
+- System prompt: `Turn this into a haiku`
+- Output column: `haiku`
+- Start the enrichment
+
+You can use haiku column -> cog menu -> Show not-blank rows to see the haikus it has written so far.
 
 ## 5. Publishing a table
 
