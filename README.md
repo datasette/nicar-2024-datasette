@@ -245,6 +245,10 @@ Now wait for a few seconds... and if all goes well the event will be added to th
 
 ## Using the Datasette Cloud (and Datasette) API
 
+<details>
+<summary>
+Section skipped for time - but you can work through this later at your own pace
+</summary>
 Datasette has had a powerful read-only JSON API since it first launched.
 
 One of the signature features of the forthcoming [Datasette 1.0](https://docs.datasette.io/en/latest/changelog.html) is the new [JSON write API](https://docs.datasette.io/en/latest/json_api.html#the-json-write-api), for writing data directly to a Datasette instance.
@@ -322,6 +326,7 @@ dclient insert dc nicar_schedule nicar-2024-schedule.json \
 This should create a table called `nicar_schedule` in your instance with the `session_id` column set as the primary key.
 
 The `--create` option causes the table to be created if it does not exits yet. The `--alter` option is needed because this JSON file has later objects that have keys that were not present earlier on, so the table needs to be altered to fit them.
+</details>
 
 ## Advanced API usage
 
