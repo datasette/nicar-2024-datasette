@@ -25,13 +25,13 @@ This will be a walkthrough of the Datasette open source project! This can be ran
 
 On the command line, run:
 
-```
+```bash
 pip install datasette sqlite-utils
 ```
 
 To make sure it installed correctly:
 
-```
+```bash
 datasette --version
 
 sqlite-utils --version
@@ -39,7 +39,7 @@ sqlite-utils --version
 
 For this workshop, we will use the [`datasette-upload-csvs`](https://github.com/simonw/datasette-upload-csvs) plugin, which can be installed with:
 
-```
+```bash
 datasette install datasette-upload-csvs
 ```
 
@@ -50,7 +50,7 @@ dataset. [Download the CSV here](https://gist.githubusercontent.com/asg017/144d0
 
 Now startup Datasette with an empty database like so:
 
-```
+```bash
 datasette --create nicar24.db --root
 ```
 
@@ -72,13 +72,13 @@ Now we'll focus on a 2nd way to import data, using the `sqlite-utils` CLI. Downl
 
 To import the CSV to your SQLite database, we'll use `sqlite-utils` like so:
 
-```
+```bash
 sqlite-utils insert nicar24.db sessions nicar-2024-schedule.csv  --csv
 ```
 
 Start Datasette back up with:
 
-```
+```bash
 datasette nicar24.db
 ```
 
@@ -91,7 +91,7 @@ Open `http://127.0.0.1:8001` and checkout the new `sessions` table.
 
 If we want to add a search field to the session_description column, we could run:
 
-```
+```bash
 sqlite-utils enable-fts nicar24.db sessions session_description
 ```
 
@@ -115,6 +115,8 @@ Let's create a space now:
   - We'll start you with 2GB of volume space but this can be increased up to 500GB
   - Your data is continually backed up to a private S3 bucket using Litestream. You can download snapshots of the data directly.
   - Philosophically, avoiding lockin is very important to us. You should be able to extract your data at any time, in an open format
+
+![The create a space UI, with a map to help you pick the global location for your space](create-space.png)
 
 ### 2. Importing some data
 
