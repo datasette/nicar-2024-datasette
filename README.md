@@ -109,7 +109,7 @@ Let's create a space now:
 
 - Go to https://www.datasette.cloud/ and create an account - I recommend sign in with Google, that way you don't have to deal with Yet Another Password.
 - Enter the invite code we distributed in the session...
-- ... and create a space. Datasette Cloud is built on top of Fly.io which means we can run your space in many different locations around the world. The default in Virginia works just fine though.
+- ... and create a space. Datasette Cloud is built on top of [Fly.io](https://fly.io/) which means we can run your space in many different locations around the world. The default in Virginia works just fine though.
 - Spaces can take up to a minute to be created the first time.
   - Each space runs on a separate container, for security and to ensure the performance of one space doesn't impact any others
   - We'll start you with 2GB of volume space but this can be increased up to 500GB
