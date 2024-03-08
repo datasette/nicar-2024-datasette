@@ -243,6 +243,86 @@ Drag the photograph onto the textarea, or select it with the file upload field.
 
 Now wait for a few seconds... and if all goes well the event will be added to the table as well.
 
+## Using the Datasette Cloud (and Datasette) API
+
+Datasette has had a powerful read-only JSON API since it first launched.
+
+One of the signature features of the forthcoming [Datasette 1.0](https://docs.datasette.io/en/latest/changelog.html) is the new [JSON write API](https://docs.datasette.io/en/latest/json_api.html#the-json-write-api), for writing data directly to a Datasette instance.
+
+Let's use the API to import a JSON file directly into Datasette Cloud.
+
+### 1. Create an API key
+
+Use the burger menu at the top right of Datasette Cloud and select "Create API token".
+
+This form allows you to create finely grained API keys. You can create a long-lived key that can do anything your user can do, or you can set an expiration time on it. You can also limit an API key to specific operations, either against everything or against specific databases or tables.
+
+For the moment let's keep things simple: create an API key with the default settings, but set it to expire in an hour.
+
+You'll only see the API key once, so copy and paste it out to your notes.
+
+### 2. Try it out with `curl`
+
+Let's try our new API key. Run the following command in the terminal:
+```bash
+export DS_KEY='dsatok_...'
+```
+Now let's make an API call:
+```bash
+curl 'https://your-subdomain.datasette.cloud/data.json' \
+  -H "Authorization: Bearer $DS_KEY"
+```
+This returns details about every table in your database.
+
+A more interesting thing to do is tag on a SQL query:
+```bash
+curl 'https://your-subdomain.datasette.cloud/data.json?sql=select+*+from+events' \
+  -H "Authorization: Bearer $DS_KEY"
+```
+This should return the results of that query to your terminal.
+
+### 3. Install and use dclient
+
+[dclient](https://dclient.datasette.io) is a command-line tool for interacting with the Datasette API in a more convenient way. Install it like this:
+
+```bash
+pip install dclient
+```
+To tell it about your key, run `dclient auth set`:
+
+```bash
+dclient auth add https://your-subdomain.datasette.cloud/
+# Token: paste your token here
+```
+
+Now any calls you make to that URL will automatically include the token:
+```bash
+dclient query https://your-subdomain.datasette.cloud/data 'select * from events'
+```
+One last convenience: create an alias for that URL like this:
+```bash
+dclient alias add dc https://your-subdomain.datasette.cloud/data
+```
+And now you can do this:
+```bash
+dclient query dc 'select * from events'
+```
+
+### 4. Upload JSON using dclient
+
+With all of the above setup, let's import the NICAR JSON schedule.
+
+Grab the file from https://schedules.ire.org/nicar-2024/nicar-2024-schedule.json
+
+Now run the following:
+```bash
+dclient insert dc nicar_schedule nicar-2024-schedule.json \
+  --create --alter --pk session_id
+```
+This should create a table called `nicar_schedule` in your instance with the `session_id` column set as the primary key.
+
+The `--create` option causes the table to be created if it does not exits yet. The `--alter` option is needed because this JSON file has later objects that have keys that were not present earlier on, so the table needs to be altered to fit them.
+
 ## Final demos
 
 - `datasette-comments`
