@@ -234,7 +234,7 @@ Watch as the extraction process pulls the events out of the unstructured text an
 
 ### 8. Extracting structured data from an image
 
-I took [a photograph of a flier](https://static.simonwillison.net.s3-us-west-1.amazonaws.com/static/2024/comedy-luau.jpeg) for an event in Half Moon Bay a while ago. Let's import that event as well.
+I took [a photograph of a flier](https://static.simonwillison.net/static/2024/comedy-luau.jpeg) for an event in Half Moon Bay a while ago. Let's import that event as well.
 
 From the new `events` table click:
 - Table actions -> Extract data into this table
