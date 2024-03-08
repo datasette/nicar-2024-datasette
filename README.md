@@ -323,6 +323,13 @@ This should create a table called `nicar_schedule` in your instance with the `se
 
 The `--create` option causes the table to be created if it does not exits yet. The `--alter` option is needed because this JSON file has later objects that have keys that were not present earlier on, so the table needs to be altered to fit them.
 
+## Advanced API usage
+
+Here are some more advanced uses of the Datasette Cloud API:
+
+- https://demos.datasette.site/data/documents is a public searchable database of documents added to the Federal Register. It is populated by [this scheduled GitHub Action](https://github.com/simonw/federal-register-to-datasette/blob/6e46f167de6ff312ef5338121cf2879483aba33b/.github/workflows/main.yml), described in detail in [Getting started with the Datasette Cloud API](https://www.datasette.cloud/blog/2023/datasette-cloud-api/).
+- https://simon.datasette.site/data/feed is a feed of content from my blog. It's written to by [this Val Town](https://www.val.town/v/simonw/feedToDatasetteCloud) scheduled JavaScript task, described in [Running a scheduled function on Val Town to import Atom feeds into Datasette Cloud](https://til.simonwillison.net/valtown/scheduled).
+
 ## Final demos
 
 - `datasette-comments`
