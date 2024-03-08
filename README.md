@@ -159,6 +159,8 @@ Now we'll use an enrichment to add a `hireYear` column:
 - Regular expression: `(\d{4})-.*`
 - Output column: `hireYear`
 
+![Screenshot of the enrich data interface with those form fields filled out](enrich-regular-expression.png)
+
 ## 4. Building a search engine
 
 We'll repeat the exercise from earlier with the NICAR schedule. This time, upload the `nicar-2024-schedule.csv` file to Datasette Cloud to create a table.
